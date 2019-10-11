@@ -1,3 +1,54 @@
-def find_pi(self):
-  pass
-  
+# Find PI to the Nth digit
+# The user choose the Nth digit, but...
+# I 'll pass a limit at 10th digit
+
+import math
+
+
+def calcul_pi(n):
+    """
+  Import the pi from math and cast to a string
+  Iterate to a given number
+  And yield to our variable
+  """
+
+    our_pi = str(math.pi)
+    return our_pi[:n + 2]
+
+
+def main(your_try=True):
+    """
+  Ask the user to enter a valid integer number from 0 - 10
+  Call the calculate pi function
+  And return the pi with that precision
+  """
+    user_answer = int(input("Enter the number of decimals to calculate pi to: "))
+
+
+    while your_try:
+        try:
+            if user_answer in range(0, 10):
+                your_answer = calcul_pi(user_answer)
+                print(f'Your pi with your precision ({user_answer}) is {your_answer} !')
+            elif user_answer > 10:
+                print("Enter a valid number between 0-10")
+                continue
+            else:
+                print("Enter a non negative number")
+                continue
+        except ValueError:
+            print("Enter a valid integer from 0 to 10")
+            continue
+        finally:
+            ans_fin = input("Do you want to repeat? Press Yes or No--> ")
+            print(ans_fin)
+            if ans_fin[0].lower() == "y":
+                pass
+            elif ans_fin[0].lower() == "n":
+                your_try = False
+            else:
+                print("Press only y or n")
+
+
+if __name__ == "__main__":
+    main()
