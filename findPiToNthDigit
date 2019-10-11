@@ -9,46 +9,43 @@ def calcul_pi(n):
     """
   Import the pi from math and cast to a string
   Iterate to a given number
-  And yield to our variable
+  And return to our variable
   """
 
     our_pi = str(math.pi)
     return our_pi[:n + 2]
 
 
-def main(your_try=True):
+def main():
     """
   Ask the user to enter a valid integer number from 0 - 10
   Call the calculate pi function
   And return the pi with that precision
   """
-    user_answer = int(input("Enter the number of decimals to calculate pi to: "))
+    user_answer = input("Enter the number of decimals to calculate pi to: ")
 
-
-    while your_try:
+    while True:
         try:
-            if user_answer in range(0, 10):
-                your_answer = calcul_pi(user_answer)
-                print(f'Your pi with your precision ({user_answer}) is {your_answer} !')
-            elif user_answer > 10:
-                print("Enter a valid number between 0-10")
+            ans = int(user_answer)
+            if ans in range(0, 11):
+                your_answer = calcul_pi(ans)
+                print(f'Your pi with your precision ({ans}) is {your_answer} !')
+            elif ans < 0 or ans > 10:
+                print("Enter a valid number between 0 and 10")
                 continue
-            else:
-                print("Enter a non negative number")
-                continue
-        except ValueError:
+        except (ValueError, TypeError):
             print("Enter a valid integer from 0 to 10")
             continue
         finally:
-            ans_fin = input("Do you want to repeat? Press Yes or No--> ")
-            print(ans_fin)
+            print("Do you want to repeat? Press Yes or No")
+            ans_fin = input('Enter your choice --> ')
             if ans_fin[0].lower() == "y":
-                pass
+                main()
             elif ans_fin[0].lower() == "n":
-                your_try = False
+                exit()
             else:
                 print("Press only y or n")
-#test
+
 
 if __name__ == "__main__":
     main()
